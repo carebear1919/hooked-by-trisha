@@ -7,7 +7,11 @@ const nextConfig: NextConfig = {
     root: path.resolve(__dirname),
   },
   images: {
-    remotePatterns: [{ protocol: "https", hostname: "lh3.googleusercontent.com" }],
+    remotePatterns: [
+      { protocol: "https", hostname: "lh3.googleusercontent.com" },
+      // Vercel Blob storage — where uploaded media lives in production.
+      { protocol: "https", hostname: "*.public.blob.vercel-storage.com" },
+    ],
   },
   // Default Server Action body limit is 1MB — too small for photo uploads.
   // Kept under Vercel's own ~4.5MB hard cap for server-side function uploads.
