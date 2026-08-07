@@ -15,7 +15,10 @@ export async function uploadMedia(formData: FormData) {
   const description = String(formData.get("description") ?? "").trim();
 
   const payload = await getPayloadClient();
-  const buffer = Buffer.from(await file.arrayBuffer());
+  // Buffer.from(arrayBuffer) can end up backed by a SharedArrayBuffer in this
+  // runtime, which the Vercel Blob upload's internal fetch() rejects. Copying
+  // through a Uint8Array guarantees a plain, non-shared buffer.
+  const buffer = Buffer.from(new Uint8Array(await file.arrayBuffer()));
 
   await payload.create({
     collection: "media",

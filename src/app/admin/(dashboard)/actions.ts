@@ -23,7 +23,9 @@ async function uploadNewPhotos(
 
   const uploaded = await Promise.all(
     files.map(async (file) => {
-      const buffer = Buffer.from(await file.arrayBuffer());
+      // See media/actions.ts uploadMedia — avoids a SharedArrayBuffer-backed
+      // Buffer that the Vercel Blob upload's internal fetch() rejects.
+      const buffer = Buffer.from(new Uint8Array(await file.arrayBuffer()));
       const doc = await payload.create({
         collection: "media",
         data: { title: titleFallback, alt: titleFallback },
