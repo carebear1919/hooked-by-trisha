@@ -1,26 +1,146 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Colors — Artisanal Warmth design system (see artisanal_warmth/DESIGN.md) */
+  --color-surface: #fcf9f4;
+  --color-surface-dim: #dcdad5;
+  --color-surface-bright: #fcf9f4;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f6f3ee;
+  --color-surface-container: #f0ede9;
+  --color-surface-container-high: #ebe8e3;
+  --color-surface-container-highest: #e5e2dd;
+  --color-surface-variant: #e5e2dd;
+  --color-on-surface: #1c1c19;
+  --color-on-surface-variant: #42493e;
+  --color-inverse-surface: #31302d;
+  --color-inverse-on-surface: #f3f0eb;
+  --color-outline: #72796e;
+  --color-outline-variant: #c2c9bb;
+  --color-surface-tint: #3b6934;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-primary: #154212;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #2d5a27;
+  --color-on-primary-container: #9dd090;
+  --color-inverse-primary: #a1d494;
+  --color-primary-fixed: #bcf0ae;
+  --color-primary-fixed-dim: #a1d494;
+  --color-on-primary-fixed: #002201;
+  --color-on-primary-fixed-variant: #23501e;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-secondary: #645d53;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #e8ded1;
+  --color-on-secondary-container: #686257;
+  --color-secondary-fixed: #ebe1d4;
+  --color-secondary-fixed-dim: #cfc5b9;
+  --color-on-secondary-fixed: #1f1b13;
+  --color-on-secondary-fixed-variant: #4c463c;
+
+  --color-tertiary: #5e2a16;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #7a402a;
+  --color-on-tertiary-container: #ffaf93;
+  --color-tertiary-fixed: #ffdbcf;
+  --color-tertiary-fixed-dim: #ffb59b;
+  --color-on-tertiary-fixed: #380d00;
+  --color-on-tertiary-fixed-variant: #6f3722;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  --color-background: #fcf9f4;
+  --color-on-background: #1c1c19;
+
+  /* Radius scale — matches DESIGN.md, not Stitch's drifted 0.25rem default */
+  --radius-sm: 0.25rem;
+  --radius: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Spacing */
+  --spacing-base: 8px;
+  --spacing-section-gap: 80px;
+  --spacing-container-padding: 24px;
+  --spacing-gutter: 20px;
+
+  /* Fonts */
+  --font-headline: var(--font-playfair-display), serif;
+  --font-body: var(--font-dm-sans), sans-serif;
+
+  --text-display-lg: 56px;
+  --text-display-lg--line-height: 1.1;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--font-weight: 600;
+
+  --text-headline-lg: 40px;
+  --text-headline-lg--line-height: 1.2;
+  --text-headline-lg--font-weight: 500;
+
+  --text-headline-lg-mobile: 32px;
+  --text-headline-lg-mobile--line-height: 1.2;
+  --text-headline-lg-mobile--font-weight: 500;
+
+  --text-headline-md: 32px;
+  --text-headline-md--line-height: 1.3;
+  --text-headline-md--font-weight: 500;
+
+  --text-headline-sm: 24px;
+  --text-headline-sm--line-height: 1.4;
+  --text-headline-sm--font-weight: 500;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.6;
+  --text-body-lg--font-weight: 400;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 1.6;
+  --text-body-md--font-weight: 400;
+
+  --text-label-md: 14px;
+  --text-label-md--line-height: 1.2;
+  --text-label-md--letter-spacing: 0.05em;
+  --text-label-md--font-weight: 500;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes notif-glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(21, 66, 18, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(21, 66, 18, 0.25);
+  }
+}
+.notif-glow {
+  animation: notif-glow-pulse 0.7s ease-in-out 3;
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 12px;
 }

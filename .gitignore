@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# local Payload media uploads (use Vercel Blob or similar in production)
+/media/
+
 # production
 /build
 
