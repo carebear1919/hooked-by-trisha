@@ -15,10 +15,12 @@ export async function uploadMedia(formData: FormData) {
   const description = String(formData.get("description") ?? "").trim();
 
   const payload = await getPayloadClient();
-  // Buffer.from(arrayBuffer) can end up backed by a SharedArrayBuffer in this
-  // runtime, which the Vercel Blob upload's internal fetch() rejects. Copying
-  // through a Uint8Array guarantees a plain, non-shared buffer.
-  const buffer = Buffer.from(new Uint8Array(await file.arrayBuffer()));
+  // file.arrayBuffer() can be backed by a SharedArrayBuffer under Vercel's
+  // runtime, which the Blob upload's internal fetch() rejects. `new
+  // Uint8Array(arrayBuffer)` is only a VIEW over that same buffer — it does
+  // not copy. ArrayBuffer.prototype.slice(0) forces an actual byte copy into
+  // a fresh, guaranteed-non-shared buffer.
+  const buffer = Buffer.from((await file.arrayBuffer()).slice(0));
 
   await payload.create({
     collection: "media",
