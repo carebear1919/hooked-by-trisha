@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getPayloadClient, textToLexical } from "@/lib/payload";
 import { notifyPaymentConfirmed } from "@/lib/notify";
+import { toUploadBuffer } from "@/lib/safe-buffer";
 
 function slugify(value: string) {
   return value
@@ -23,9 +24,7 @@ async function uploadNewPhotos(
 
   const uploaded = await Promise.all(
     files.map(async (file) => {
-      // See media/actions.ts uploadMedia — .slice(0) forces a real copy so the
-      // Blob upload's internal fetch() never sees a SharedArrayBuffer-backed buffer.
-      const buffer = Buffer.from((await file.arrayBuffer()).slice(0));
+      const buffer = await toUploadBuffer(file);
       const doc = await payload.create({
         collection: "media",
         data: { title: titleFallback, alt: titleFallback },
