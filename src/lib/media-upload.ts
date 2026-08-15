@@ -30,12 +30,14 @@ export async function createMediaDoc({
   const buffer = await toUploadBuffer(file);
   const mimetype = file.type || "application/octet-stream";
 
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
+  const blobToken = process.env.BLOB2_READ_WRITE_TOKEN || process.env.BLOB_READ_WRITE_TOKEN;
+
+  if (blobToken) {
     const blob = await put(file.name, buffer, {
       access: "public",
       addRandomSuffix: true,
       contentType: mimetype,
-      token: process.env.BLOB_READ_WRITE_TOKEN,
+      token: blobToken,
     });
 
     return payload.create({

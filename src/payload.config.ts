@@ -24,11 +24,12 @@ const dirname = path.dirname(filename);
 // filesystem. Vercel's is ephemeral, so uploads there must go to Blob storage
 // instead — enabled automatically once BLOB_READ_WRITE_TOKEN is set (Vercel
 // injects this when a Blob store is attached to the project).
-const plugins: Plugin[] = process.env.BLOB_READ_WRITE_TOKEN
+const blobToken = process.env.BLOB2_READ_WRITE_TOKEN || process.env.BLOB_READ_WRITE_TOKEN;
+const plugins: Plugin[] = blobToken
   ? [
       vercelBlobStorage({
         collections: { media: true },
-        token: process.env.BLOB_READ_WRITE_TOKEN,
+        token: blobToken,
       }),
     ]
   : [];
