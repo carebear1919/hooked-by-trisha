@@ -21,6 +21,11 @@ export const Media: CollectionConfig = {
     // lib/media-upload.ts) and hand Payload the resulting metadata instead
     // of raw file bytes, so it never re-processes the file itself.
     filesRequiredOnCreate: false,
+    // Without a stored focalX/focalY, Payload's default focalPoint feature
+    // treats every create as a focal-point change vs. the (missing) current
+    // value, which makes it re-fetch our blob's own URL and re-upload it
+    // under the same filename — colliding with the blob we already wrote.
+    focalPoint: false,
   },
   fields: [
     {
