@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getPayloadClient, textToLexical } from "@/lib/payload";
 import { notifyPaymentConfirmed } from "@/lib/notify";
-import { toUploadBuffer } from "@/lib/safe-buffer";
+import { createMediaDoc } from "@/lib/media-upload";
 
 function slugify(value: string) {
   return value
@@ -24,17 +24,7 @@ async function uploadNewPhotos(
 
   const uploaded = await Promise.all(
     files.map(async (file) => {
-      const buffer = await toUploadBuffer(file);
-      const doc = await payload.create({
-        collection: "media",
-        data: { title: titleFallback, alt: titleFallback },
-        file: {
-          data: buffer,
-          mimetype: file.type || "application/octet-stream",
-          name: file.name,
-          size: buffer.length,
-        },
-      });
+      const doc = await createMediaDoc({ file, title: titleFallback, alt: titleFallback, description: "" });
       return doc.id;
     })
   );

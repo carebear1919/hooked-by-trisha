@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getPayloadClient } from "@/lib/payload";
-import { toUploadBuffer } from "@/lib/safe-buffer";
+import { createMediaDoc } from "@/lib/media-upload";
 
 export async function uploadMedia(formData: FormData) {
   const file = formData.get("file");
@@ -15,38 +15,17 @@ export async function uploadMedia(formData: FormData) {
   const alt = String(formData.get("alt") ?? "").trim() || title || file.name;
   const description = String(formData.get("description") ?? "").trim();
 
-  const payload = await getPayloadClient();
-  const buffer = await toUploadBuffer(file);
-
-  console.log("[uploadMedia] starting", {
-    filename: file.name,
-    mimetype: file.type,
-    size: buffer.length,
-    bufferIsSharedArrayBuffer: buffer.buffer instanceof SharedArrayBuffer,
-  });
-
   try {
-    await payload.create({
-      collection: "media",
-      data: { title, alt, description },
-      file: {
-        data: buffer,
-        mimetype: file.type || "application/octet-stream",
-        name: file.name,
-        size: buffer.length,
-      },
-    });
+    await createMediaDoc({ file, title, alt, description });
   } catch (err) {
-    console.error("[uploadMedia] payload.create failed:", {
+    console.error("[uploadMedia] failed:", {
       name: (err as Error)?.name,
       message: (err as Error)?.message,
       stack: (err as Error)?.stack,
-      raw: err,
     });
     throw err;
   }
 
-  console.log("[uploadMedia] success");
   revalidatePath("/admin/media");
   redirect("/admin/media?flash=Image uploaded");
 }

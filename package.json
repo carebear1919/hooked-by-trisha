@@ -17,6 +17,7 @@
     "@payloadcms/next": "^3.86.0",
     "@payloadcms/richtext-lexical": "^3.86.0",
     "@payloadcms/storage-vercel-blob": "^3.86.0",
+    "@vercel/blob": "^2.3.1",
     "graphql": "^16.14.2",
     "jose": "^6.2.4",
     "next": "16.2.11",

@@ -17,6 +17,10 @@ export const Media: CollectionConfig = {
     // on our end could reach them. Every consumer already falls back to
     // the full-size url when thumbnailURL is absent.
     mimeTypes: ["image/*"],
+    // In production we upload to Vercel Blob ourselves (see
+    // lib/media-upload.ts) and hand Payload the resulting metadata instead
+    // of raw file bytes, so it never re-processes the file itself.
+    filesRequiredOnCreate: false,
   },
   fields: [
     {
