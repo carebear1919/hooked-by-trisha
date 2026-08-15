@@ -18,17 +18,35 @@ export async function uploadMedia(formData: FormData) {
   const payload = await getPayloadClient();
   const buffer = await toUploadBuffer(file);
 
-  await payload.create({
-    collection: "media",
-    data: { title, alt, description },
-    file: {
-      data: buffer,
-      mimetype: file.type || "application/octet-stream",
-      name: file.name,
-      size: buffer.length,
-    },
+  console.log("[uploadMedia] starting", {
+    filename: file.name,
+    mimetype: file.type,
+    size: buffer.length,
+    bufferIsSharedArrayBuffer: buffer.buffer instanceof SharedArrayBuffer,
   });
 
+  try {
+    await payload.create({
+      collection: "media",
+      data: { title, alt, description },
+      file: {
+        data: buffer,
+        mimetype: file.type || "application/octet-stream",
+        name: file.name,
+        size: buffer.length,
+      },
+    });
+  } catch (err) {
+    console.error("[uploadMedia] payload.create failed:", {
+      name: (err as Error)?.name,
+      message: (err as Error)?.message,
+      stack: (err as Error)?.stack,
+      raw: err,
+    });
+    throw err;
+  }
+
+  console.log("[uploadMedia] success");
   revalidatePath("/admin/media");
   redirect("/admin/media?flash=Image uploaded");
 }
