@@ -39,7 +39,11 @@ export default function ProductGrid({
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
     lockedCategory ? [lockedCategory] : []
   );
-  const [maxPrice, setMaxPrice] = useState(12000);
+  const priceCeiling = useMemo(
+    () => Math.max(500, ...products.map((p) => Math.ceil(p.price / 250) * 250)),
+    [products]
+  );
+  const [maxPrice, setMaxPrice] = useState(priceCeiling);
   const [inStockOnly, setInStockOnly] = useState(false);
   const [sort, setSort] = useState<SortOption>("newest");
   const [search, setSearch] = useState(initialSearch ?? "");
@@ -66,7 +70,7 @@ export default function ProductGrid({
 
   const clearFilters = () => {
     setSelectedCategories(lockedCategory ? [lockedCategory] : []);
-    setMaxPrice(12000);
+    setMaxPrice(priceCeiling);
     setInStockOnly(false);
     setSearch("");
     setPage(1);
@@ -167,7 +171,7 @@ export default function ProductGrid({
               <input
                 type="range"
                 min={500}
-                max={12000}
+                max={priceCeiling}
                 step={250}
                 value={maxPrice}
                 onChange={(e) => {
