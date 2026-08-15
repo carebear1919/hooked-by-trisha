@@ -50,6 +50,13 @@ export async function createMediaDoc({
         mimeType: mimetype,
         filesize: buffer.length,
         url: blob.url,
+        // Payload always defaults focal point to {x:50,y:50} on create and
+        // compares it against the doc's (missing) focalX/focalY, treating the
+        // mismatch as a focal-point change — which re-fetches this same URL
+        // and re-uploads it under the same filename, colliding with the blob
+        // we just wrote above. Setting these to match avoids that re-upload.
+        focalX: 50,
+        focalY: 50,
       },
     });
   }
