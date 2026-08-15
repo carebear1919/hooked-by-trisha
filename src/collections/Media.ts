@@ -10,10 +10,12 @@ export const Media: CollectionConfig = {
   },
   upload: {
     staticDir: "media",
-    imageSizes: [
-      { name: "thumbnail", width: 400, height: 400, position: "centre" },
-      { name: "card", width: 800, height: 1000, position: "centre" },
-    ],
+    // No imageSizes: sharp's async resize-variant generation was the actual
+    // source of the "SharedArrayBuffer is not allowed" upload crash on
+    // Vercel — those buffers are produced entirely inside Payload/sharp,
+    // outside anything our own upload code touches, so no buffer-copy fix
+    // on our end could reach them. Every consumer already falls back to
+    // the full-size url when thumbnailURL is absent.
     mimeTypes: ["image/*"],
   },
   fields: [
