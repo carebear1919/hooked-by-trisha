@@ -11,7 +11,6 @@ import { createOrder } from "./actions";
 const PAYMENT_METHODS = [
   { value: "gcash", icon: "account_balance_wallet", title: "GCash" },
   { value: "bpi", icon: "account_balance", title: "BPI Online" },
-  { value: "card", icon: "credit_card", title: "Credit / Debit Card" },
 ] as const;
 
 function formatPHP(amount: number) {

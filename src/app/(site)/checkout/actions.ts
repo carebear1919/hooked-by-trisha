@@ -10,7 +10,7 @@ export type CheckoutInput = {
   email: string;
   address: string;
   deliveryMethod: "standard" | "pickup";
-  paymentMethod: "gcash" | "bpi" | "card";
+  paymentMethod: "gcash" | "bpi";
   paymentReference?: string;
   items: { slug: string; price: number; quantity: number }[];
   shippingFee: number;
