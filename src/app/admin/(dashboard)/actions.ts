@@ -218,6 +218,7 @@ export async function updateSiteSettings(formData: FormData) {
     slug: "site-settings",
     data: {
       shopName: String(formData.get("shopName") ?? ""),
+      creatorName: String(formData.get("creatorName") ?? ""),
       payment: {
         gcashNumber: String(formData.get("gcashNumber") ?? ""),
         gcashQrCode: formData.get("gcashQrCode") ? Number(formData.get("gcashQrCode")) : null,

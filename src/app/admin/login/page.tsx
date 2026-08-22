@@ -5,5 +5,10 @@ export default async function AdminLoginPage() {
   const payload = await getPayloadClient();
   const settings = await payload.findGlobal({ slug: "site-settings" });
 
-  return <AdminLoginForm supportEmail={settings.contactEmail || "support@hookedbytrisha.com"} />;
+  return (
+    <AdminLoginForm
+      shopName={settings.shopName || "Handmade Crochet Co."}
+      supportEmail={settings.contactEmail || "support@example.com"}
+    />
+  );
 }

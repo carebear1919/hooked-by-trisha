@@ -6,7 +6,15 @@ export const SiteSettings: GlobalConfig = {
     read: () => true,
   },
   fields: [
-    { name: "shopName", type: "text", defaultValue: "Hooked by Trisha" },
+    { name: "shopName", type: "text", defaultValue: "Handmade Crochet Co." },
+    {
+      name: "creatorName",
+      type: "text",
+      label: "Creator name (optional)",
+      admin: {
+        description: "Shown as \"by {name}\" in the footer and admin panel. Leave blank to stay unbranded.",
+      },
+    },
     { name: "logo", type: "upload", relationTo: "media" },
     {
       name: "payment",

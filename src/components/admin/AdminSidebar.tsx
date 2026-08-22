@@ -20,7 +20,13 @@ const NAV_ITEMS = [
 
 const STORAGE_KEY = "hbt_admin_sidebar_collapsed";
 
-export default function AdminSidebar({ email }: { email?: string }) {
+export default function AdminSidebar({
+  email,
+  shopName = "Handmade Crochet Co.",
+}: {
+  email?: string;
+  shopName?: string;
+}) {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
   const [hydrated, setHydrated] = useState(false);
@@ -50,7 +56,7 @@ export default function AdminSidebar({ email }: { email?: string }) {
         </span>
         {!collapsed && (
           <span className="font-headline text-headline-sm font-bold text-on-surface whitespace-nowrap">
-            Hooked by Trisha
+            {shopName}
           </span>
         )}
       </div>

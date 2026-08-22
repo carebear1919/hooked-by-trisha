@@ -23,9 +23,9 @@ export async function generateMetadata({
   const category = await getCategoryBySlug(categorySlug);
   if (!category) return {};
 
-  const title = `${category.name} | Hooked by Trisha`;
+  const title = `${category.name} | Handmade Crochet Co.`;
   const description =
-    category.description || `Shop handmade ${category.name.toLowerCase()} from Hooked by Trisha.`;
+    category.description || `Shop handmade ${category.name.toLowerCase()} from Handmade Crochet Co.`;
 
   return {
     title,
@@ -96,7 +96,7 @@ export default async function CategoryPage({
             <div className="relative w-full aspect-4/5 rounded-[40px] overflow-hidden shadow-xl">
               <Image
                 className="object-cover"
-                alt={products[0]?.alt ?? `${category.name} products from Hooked by Trisha.`}
+                alt={products[0]?.alt ?? `${category.name} products from Handmade Crochet Co.`}
                 src={
                   products[0]?.image ??
                   "https://lh3.googleusercontent.com/aida-public/AB6AXuD7X7ME7h709mVx-K_iL3JesOzRjuYFhtCQrSyGxXIYqM9I2q6XC5-uKIU-pz_UcGlFYYDV3n6go8cPshB4KskoT4yoYcMmfTj9I83MO1tf42hW0kDgJ1srf2PQw7jjrN63wCnMNSbFsiKccEWYSLqVytlYNf3FCfrtwY9IPGkI1QslGJLLXmOgmRWfxRNOxzavGYELJBLqdGx7fLwLyGCLhpFdm7I3uf0QUDUymnvM1RYADuEacrU_KAvJDPQyRue_Rb-1cthIgMo"

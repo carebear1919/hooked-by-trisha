@@ -29,8 +29,8 @@ export async function generateMetadata({
   const product = await getProductBySlug(slug);
   if (!product) return {};
 
-  const title = `${product.name} | Hooked by Trisha`;
-  const description = product.description || `${product.name} — handmade crochet from Hooked by Trisha.`;
+  const title = `${product.name} | Handmade Crochet Co.`;
+  const description = product.description || `${product.name} — handmade crochet from Handmade Crochet Co.`;
 
   return {
     title,

@@ -14,7 +14,7 @@ const NAV_LINKS = [
 ];
 
 export default function Header({
-  shopName = "Hooked by Trisha",
+  shopName = "Handmade Crochet Co.",
   logoUrl,
 }: {
   shopName?: string;

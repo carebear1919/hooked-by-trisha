@@ -159,7 +159,7 @@ export default function CheckoutForm({
                       name="fullName"
                       type="text"
                       required
-                      placeholder="Trisha Mae"
+                      placeholder="Juan Dela Cruz"
                       className="w-full bg-surface-container-low border-none rounded-xl p-4 focus:ring-2 focus:ring-primary-container outline-none transition-all"
                     />
                   </div>

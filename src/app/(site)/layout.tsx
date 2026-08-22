@@ -20,7 +20,7 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
-  title: "Hooked by Trisha | Handmade Crochet",
+  title: "Handmade Crochet Co. | Handmade Crochet",
   description:
     "Handmade crochet bags, amigurumi, blankets, and accessories, crafted by hand in the Philippines.",
 };
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
   const payload = await getPayloadClient();
   const settings = await payload.findGlobal({ slug: "site-settings", depth: 1 });
-  const shopName = settings.shopName || "Hooked by Trisha";
+  const shopName = settings.shopName || "Handmade Crochet Co.";
   const logo = settings.logo;
   const logoUrl = logo && typeof logo === "object" ? (logo.url ?? null) : null;
 
@@ -49,7 +49,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
             <WishlistProvider>
               <Header shopName={shopName} logoUrl={logoUrl} />
               <main className="flex-1">{children}</main>
-              <Footer shopName={shopName} social={settings.social} />
+              <Footer shopName={shopName} creatorName={settings.creatorName ?? undefined} social={settings.social} />
             </WishlistProvider>
           </CartProvider>
         </ToastProvider>

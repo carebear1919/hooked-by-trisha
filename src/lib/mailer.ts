@@ -3,17 +3,17 @@ import "server-only";
 import { Resend } from "resend";
 import { renderEmailLayout } from "./email-template";
 
-const FROM = process.env.EMAIL_FROM ?? "Hooked by Trisha <onboarding@resend.dev>";
+const FROM = process.env.EMAIL_FROM ?? "Handmade Crochet Co. <onboarding@resend.dev>";
 
 export async function sendMagicLinkEmail(to: string, url: string) {
   await sendEmail({
     to,
-    subject: "Your Hooked by Trisha admin login link",
+    subject: "Your Handmade Crochet Co. admin login link",
     html: renderEmailLayout({
       preheader: "Your secure login link, valid for 15 minutes.",
       heading: "Your admin login link",
       bodyHtml: `
-        <p>Click below to log in to the Hooked by Trisha admin panel. This link expires in 15 minutes.</p>
+        <p>Click below to log in to the Handmade Crochet Co. admin panel. This link expires in 15 minutes.</p>
         <p>If you didn't request this, you can safely ignore this email.</p>
       `,
       ctaLabel: "Log In to Admin",

@@ -73,6 +73,7 @@ export type Tab =
 
 type SiteSettingsData = {
   shopName?: string | null;
+  creatorName?: string | null;
   logo?: { id: number | string } | number | string | null;
   payment?: {
     gcashNumber?: string | null;
@@ -231,7 +232,10 @@ export default function SettingsForm({
 
         <div className={tab === "General" ? "" : "hidden"}>
           <Row title="Shop Name" description="Shown in the header and browser tab.">
-            <Input name="shopName" defaultValue={settings.shopName ?? ""} placeholder="Hooked by Trisha" />
+            <Input name="shopName" defaultValue={settings.shopName ?? ""} placeholder="Handmade Crochet Co." />
+          </Row>
+          <Row title="Creator Name" description={'Optional — shown as "by {name}" in the footer and admin panel. Leave blank to stay unbranded.'}>
+            <Input name="creatorName" defaultValue={settings.creatorName ?? ""} placeholder="e.g. Maria" />
           </Row>
           <Row title="Logo" description="A square image works best.">
             <MediaPicker
@@ -259,7 +263,7 @@ export default function SettingsForm({
             <Input
               name="bpiAccountName"
               defaultValue={settings.payment?.bpiAccountName ?? ""}
-              placeholder="Trisha Dela Cruz"
+              placeholder="Juan Dela Cruz"
             />
           </Row>
           <Row title="BPI Account Number">
@@ -324,7 +328,7 @@ export default function SettingsForm({
               showName="showInstagram"
               defaultUrl={settings.social?.instagram ?? ""}
               defaultShow={settings.social?.showInstagram ?? true}
-              placeholder="https://instagram.com/hookedbytrisha"
+              placeholder="https://instagram.com/yourshop"
             />
           </Row>
           <Row title="Facebook">
@@ -333,7 +337,7 @@ export default function SettingsForm({
               showName="showFacebook"
               defaultUrl={settings.social?.facebook ?? ""}
               defaultShow={settings.social?.showFacebook ?? true}
-              placeholder="https://facebook.com/hookedbytrisha"
+              placeholder="https://facebook.com/yourshop"
             />
           </Row>
           <Row title="TikTok">
@@ -342,7 +346,7 @@ export default function SettingsForm({
               showName="showTiktok"
               defaultUrl={settings.social?.tiktok ?? ""}
               defaultShow={settings.social?.showTiktok ?? true}
-              placeholder="https://tiktok.com/@hookedbytrisha"
+              placeholder="https://tiktok.com/@yourshop"
             />
           </Row>
         </div>
@@ -414,7 +418,7 @@ export default function SettingsForm({
 
         <div className={tab === "Notifications" ? "" : "hidden"}>
           <Row title="Contact Email" description="Where contact form submissions and order alerts are sent.">
-            <Input name="contactEmail" type="email" defaultValue={settings.contactEmail ?? ""} placeholder="trisha@example.com" />
+            <Input name="contactEmail" type="email" defaultValue={settings.contactEmail ?? ""} placeholder="hello@example.com" />
           </Row>
           <p className="mt-2 font-body text-body-md text-on-surface-variant">
             Manage which events send an email in Notifications settings.

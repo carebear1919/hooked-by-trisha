@@ -4,7 +4,13 @@ import { useState } from "react";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-export default function AdminLoginForm({ supportEmail }: { supportEmail: string }) {
+export default function AdminLoginForm({
+  shopName,
+  supportEmail,
+}: {
+  shopName: string;
+  supportEmail: string;
+}) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
 
@@ -39,7 +45,7 @@ export default function AdminLoginForm({ supportEmail }: { supportEmail: string 
               <span aria-hidden className="material-symbols-outlined text-primary text-2xl">
                 spa
               </span>
-              <span className="font-headline text-headline-sm text-primary">Hooked by Trisha</span>
+              <span className="font-headline text-headline-sm text-primary">{shopName}</span>
             </div>
             <h1 className="font-headline text-headline-md text-on-surface mb-2">Welcome Back</h1>
             <p className="font-body text-body-md text-on-surface-variant">
@@ -107,7 +113,7 @@ export default function AdminLoginForm({ supportEmail }: { supportEmail: string 
 
         <div className="mt-8 text-center text-on-surface-variant opacity-60">
           <p className="font-body text-[12px] uppercase tracking-[0.2em]">
-            © 2026 Hooked by Trisha • Admin
+            © 2026 {shopName} • Admin
           </p>
         </div>
       </div>

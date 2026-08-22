@@ -14,8 +14,8 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Admin | Hooked by Trisha",
-  description: "Shop management dashboard for Hooked by Trisha.",
+  title: "Admin | Handmade Crochet Co.",
+  description: "Shop management dashboard for Handmade Crochet Co.",
 };
 
 export default function AdminRootLayout({ children }: { children: React.ReactNode }) {

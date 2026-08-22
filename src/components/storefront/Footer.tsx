@@ -30,10 +30,12 @@ const SOCIAL_PATHS: Record<string, string> = {
 };
 
 export default function Footer({
-  shopName = "Hooked by Trisha",
+  shopName = "Handmade Crochet Co.",
+  creatorName,
   social,
 }: {
   shopName?: string;
+  creatorName?: string;
   social?: SocialSettings;
 }) {
   const socialLinks = getVisibleSocialLinks(social);
@@ -60,6 +62,7 @@ export default function Footer({
           </Link>
           <p className="mt-3 font-body text-body-md text-on-surface-variant">
             Handmade crochet, crafted with heart in the Philippines.
+            {creatorName && ` By ${creatorName}.`}
           </p>
           {socialLinks.length > 0 && (
             <div className="mt-4 flex items-center gap-4">

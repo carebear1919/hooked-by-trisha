@@ -9,7 +9,7 @@ export default async function ContactPage() {
 
   return (
     <ContactForm
-      contactEmail={settings.contactEmail || "hello@hookedbytrisha.com"}
+      contactEmail={settings.contactEmail || "hello@example.com"}
       socialLinks={socialLinks}
     />
   );

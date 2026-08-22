@@ -79,7 +79,7 @@ async function notify({
     ctaHref,
   });
 
-  const sent = await sendEmail({ to: recipient, subject: `Hooked by Trisha — ${SUBJECTS[event]}`, html });
+  const sent = await sendEmail({ to: recipient, subject: `Handmade Crochet Co. — ${SUBJECTS[event]}`, html });
   await logNotification(event, recipient, sent, preheader ?? SUBJECTS[event], link ?? ctaHref);
 }
 
@@ -89,7 +89,7 @@ export async function notifyNewOrder(order: { id: number | string; buyerName: st
     event: "new-order",
     preheader: `Order #${order.id} from ${order.buyerName} — ${formatPHP(order.total)}`,
     bodyHtml: `
-      <p>New order placed on Hooked by Trisha.</p>
+      <p>New order placed on Handmade Crochet Co..</p>
       <p><strong>Order #${order.id}</strong> — ${order.buyerName} — ${formatPHP(order.total)}</p>
     `,
     ctaLabel: "View Order",

@@ -44,7 +44,7 @@ export function renderEmailLayout({
             <tr>
               <td style="background-color:${COLORS.cream};padding:28px 40px;border-bottom:1px solid ${COLORS.outline};">
                 <span style="font-family:Georgia,'Times New Roman',serif;font-size:20px;font-weight:700;color:${COLORS.primary};">
-                  🌿 Hooked by Trisha
+                  🌿 Handmade Crochet Co.
                 </span>
               </td>
             </tr>

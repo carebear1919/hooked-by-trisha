@@ -45,7 +45,7 @@ export default function InviteUserButton({
                 </label>
                 <input
                   name="name"
-                  placeholder="e.g. Trisha"
+                  placeholder="e.g. Maria"
                   className="w-full bg-surface-container-low border-none rounded-md px-4 py-2.5 text-body-md focus:ring-2 focus:ring-primary"
                 />
               </div>
